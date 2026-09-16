@@ -1,40 +1,70 @@
-# Boto3 Toolkit
-This repository contains AWS related script written in Python3.X using boto3 package.
+# Botocope
+
+Botocope is a collection of Python scripts for AWS-related automation and operational tasks.
 
 ## Prerequisites
-Below prerequisites must be fulfilled for successful execution of code.
 
-### Software Requirement
-Resources in nested directories are meant for use with Python 3.x (check the version using `python3 --version`). If you don't have the compatible version, download it from official python repository. Make sure to install python package manager - pip3 (check the version using `pip3 --version`) as well.
+### Software Requirements
 
-- [python3](https://www.python.org/downloads/) >= 3.14.6
-- [pip3](https://pypi.org/project/pip/) >= 26.1.2
+Install the required tools before contributing to this project:
 
-#### Python Installation
-To install python3, pip3 and python3-venv on ubuntu operating system using apt package manager, use below command.
+- [Python 3](https://www.python.org/downloads/) >= 3.14.6
+- [pip](https://pypi.org/project/pip/) >= 26.1.2
+- [pre-commit](https://pre-commit.com/) >= 4.2.0
 
 ```bash
-sudo apt update
-sudo apt install python3
-sudo apt install python3-pip
-sudo apt install python3-venv
-
-python3 --version
-pip3 --version
+# Upgrade pip before installing project dependencies
+python -m pip install --upgrade pip
 ```
 
-### Bootstrap Virtual Environment
-It is a best practice to create a virtual environment for your coding to avoid any conflict in dependencies between multiple applications. Hence, We will need to create a virtual environment (using python's default package "venv") and install all the dependencies.
+> [!NOTE]
+> To confirm your environment, run `python3 --version` or `python --version`, and `pip3 --version` or `pip --version`. See the [Python download page](https://www.python.org/downloads/) for installation instructions.
+
+### Set Up a Virtual Environment
+
+It is recommended to create an isolated virtual environment for this project to avoid dependency conflicts with other Python projects.
 
 ```bash
-python3 -m venv boto3-venv # on Windows, use "python -m venv boto3-venv" instead
-source boto3-venv/bin/activate # on Windows, use "boto3-venv\Scripts\activate" instead
+# Linux / macOS
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# Windows
+python -m venv .venv
+.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Execution
-To run the script - go to command prompt, activate the virtual environment and hit the following command:
+> [!NOTE]
+> Activating the virtual environment updates your shell PATH so `python` and `pip` point to the environment for the current session. To leave the environment, run `deactivate`. Follow the [google article](https://cloud.google.com/python/docs/setup) to setup your Python development environment.
+
+## Run pre-commit
+This repository already includes a `.pre-commit-config.yaml`. Run the following commands to install the hooks locally:
 
 ```bash
-python </path/to/the/pythonscript>
+python -m pip install pre-commit
+pre-commit install
+pre-commit validate-config
 ```
+
+This installs the hook into `.git/hooks/pre-commit`. Once installed, pre-commit runs automatically when you commit changes. By default, it checks only the files included in the commit.
+
+To run all hooks manually, use:
+
+```bash
+pre-commit run --all-files
+pre-commit run <hook_id>
+```
+
+## Contributing
+
+Contributions and suggestions are welcome. Before opening an issue or pull request:
+
+1. Review the [contribution guidelines](CONTRIBUTING.md).
+2. Install the pre-commit hooks and run them against your changes.
+3. Open an issue for bugs or ideas, or submit a pull request with a clear description of the change.
+
+## License
+
+This repository is under MIT License.
